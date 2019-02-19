@@ -59,6 +59,17 @@ final class WorkspaceGenerator: WorkspaceGenerating {
         let workspacePath = workspaceRootPath.appending(component: workspaceName)
         let workspaceData = XCWorkspaceData(children: [])
         let workspace = XCWorkspace(data: workspaceData)
+        
+        let configurationList: ConfigurationList
+        
+        if let projectConfigurations = graph.rootProject.settings?.configurations {
+            configurationList = ConfigurationList(projectConfigurations)
+        } else {
+            configurationList = ConfigurationList([
+                Configuration(name: "Debug", type: .debug),
+                Configuration(name: "Release", type: .release),
+            ])
+        }
 
         try graph.projects.forEach { project in
             let sourceRootPath = try projectDirectoryHelper.setupProjectDirectory(project: project,
@@ -66,6 +77,7 @@ final class WorkspaceGenerator: WorkspaceGenerating {
             let generatedProject = try projectGenerator.generate(project: project,
                                                                  options: options,
                                                                  graph: graph,
+                                                                 configurations: configurationList,
                                                                  sourceRootPath: sourceRootPath)
 
             let relativePath = generatedProject.path.relative(to: path)
