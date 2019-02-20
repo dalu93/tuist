@@ -16,7 +16,7 @@ class Target: GraphInitiatable, Equatable {
     let bundleId: String
     let infoPlist: AbsolutePath
     let entitlements: AbsolutePath?
-    let settings: Settings?
+    let settings: TargetSettings?
     let dependencies: [JSON]
     let sources: [AbsolutePath]
     let resources: [AbsolutePath]
@@ -33,7 +33,7 @@ class Target: GraphInitiatable, Equatable {
          bundleId: String,
          infoPlist: AbsolutePath,
          entitlements: AbsolutePath? = nil,
-         settings: Settings? = nil,
+         settings: TargetSettings? = nil,
          sources: [AbsolutePath] = [],
          resources: [AbsolutePath] = [],
          headers: Headers? = nil,
@@ -83,7 +83,7 @@ class Target: GraphInitiatable, Equatable {
         // Settings
         let settingsDictionary: [String: JSONSerializable]? = try? dictionary.get("settings")
         settings = try settingsDictionary.map({ dictionary in
-            try Settings(dictionary: JSON(dictionary), projectPath: projectPath, fileHandler: fileHandler)
+            try TargetSettings(dictionary: JSON(dictionary), projectPath: projectPath, fileHandler: fileHandler)
         })
 
         // Sources
