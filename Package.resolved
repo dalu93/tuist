@@ -41,8 +41,8 @@
         "package": "SwiftPM",
         "repositoryURL": "https://github.com/apple/swift-package-manager",
         "state": {
-          "branch": null,
-          "revision": "a107d28d1b40491cf505799a046fee53e7c422e1",
+          "branch": "master",
+          "revision": "bceba4d5192635cbb31d976fb2a2a4b2e22d9a47",
           "version": null
         }
       },
@@ -62,15 +62,6 @@
           "branch": null,
           "revision": "23da51abd3de3bedaad59a0afbb150b48504b5b0",
           "version": "6.3.0"
-        }
-      },
-      {
-        "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams.git",
-        "state": {
-          "branch": null,
-          "revision": "26ab35f50ea891e8edefcc9d975db2f6b67e1d68",
-          "version": "1.0.1"
         }
       }
     ]
